@@ -1,4 +1,4 @@
-# SuikaGame clone Coding
+# SuikaGame Clone Coding
 수박게임
 1. PC내 npm 설치후 개발환경 구축
   node.js > vanilla > vite
