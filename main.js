@@ -12,7 +12,6 @@ switch (THEME) {
   default:
     FRUITS = FRUITS_BASE;
 }
-
 const engine = Engine.create();
 const render = Render.create({
   engine,
@@ -58,9 +57,10 @@ let currentBody = null;
 let currentFruit = null;
 let disableAction = false;
 let interval = null;
+let numFruits = 0;
 
 function addFruit() {
-  const index = Math.floor(Math.random() * 5);
+  const index = Math.floor(Math.random() * numFruits);
   const fruit = FRUITS[index];
 
   const body = Bodies.circle(300, 50, fruit.radius, {
@@ -130,14 +130,22 @@ window.onkeyup = (event) => {
       interval = null;
   }
 }
+// 스코어변수
+let Score = 0;
+const scoreBox = document.getElementById("scoreBox");
 
 Events.on(engine, "collisionStart", (event) => {
   event.pairs.forEach((collision) => {
     if (collision.bodyA.index === collision.bodyB.index) {
       const index = collision.bodyA.index;
 
-      if (index === FRUITS.length - 1) {
-        return;
+      if (index === FRUITS.length - 2) {
+        setTimeout(() => {
+          alert("Game CLEAR");
+          // game clear이후 게임재기동
+          history.go(0);
+          //return;
+        }, 500);
       }
 
       World.remove(world, [collision.bodyA, collision.bodyB]);
@@ -155,8 +163,14 @@ Events.on(engine, "collisionStart", (event) => {
           index: index + 1,
         }
       );
-
+      Score = Score + index;
+      scoreBox.innerText = Score;
       World.add(world, newBody);
+
+      // 난이도 조절 화면안의 과일이 몇단게인지 파악 순차적으로 5단계 과일까지만 생경나도록 random 변수
+      if (numFruits < 5){
+        numFruits ++;
+      }
     }
 
     if (
@@ -175,12 +189,21 @@ addFruit();
 
 const canvasArea = document.querySelector('canvas');
 function mousemove(event) {
-//   if (currentBody.position.y < 51 ){
-//     Body.setPosition(currentBody, {
-//       x: event.offsetX,
-//       y: currentBody.position.y,
-//     });
-//   }
+  let mosusePositionX = event.offsetX;
+  // 마우스위치가 현재과일의 반지금 더하기 왼쪽벽두께 보다 작으면
+  if(mosusePositionX < 30 + currentFruit.radius){
+    mosusePositionX = 30 + currentFruit.radius;
+  }
+  // 마우스위치가 현재과일의 반지금 더하기 오른쪽벽두께 보다 크면
+  else if(mosusePositionX > 590 - currentFruit.radius){
+    mosusePositionX = 590 - currentFruit.radius;
+  }
+  if (currentBody.position.y < 51 ){
+    Body.setPosition(currentBody, {
+      x: mosusePositionX,
+      y: currentBody.position.y,
+    });
+  }
   console.log(
       'offsetX: ', event.offsetX, 'offsetY:', event.offsetY, 'currentBodyY:', currentBody.position.y)
 }
@@ -197,11 +220,11 @@ function mousedown(event) {
     }, 1000);
      
     let mosusePositionX = event.offsetX;
-    // 마우스위치가 현재과일의 반지금 더하기 왼쪽벽두께 보다 작으면
+    // 마우스위치가 현재과일의 반지름 더하기 왼쪽벽두께 보다 작으면
     if(mosusePositionX < 30 + currentFruit.radius){
       mosusePositionX = 30 + currentFruit.radius;
     }
-    // 마우스위치가 현재과일의 반지금 더하기 오른쪽벽두께 보다 크면
+    // 마우스위치가 현재과일의 반지름 더하기 오른쪽벽두께 보다 크면
     else if(mosusePositionX > 590 - currentFruit.radius){
       mosusePositionX = 590 - currentFruit.radius;
     }

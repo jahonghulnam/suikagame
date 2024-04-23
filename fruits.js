@@ -1,47 +1,51 @@
 const FRUITS_BASE = [
   {
-    name: "base/00_cherry",
+    name: "base/00_tahasegawa",
     radius: 33 / 2,
   },
   {
-    name: "base/01_strawberry",
+    name: "base/01_inchoi",
     radius: 48 / 2,
   },
   {
-    name: "base/02_grape",
+    name: "base/02_yukurosawa",
     radius: 61 / 2,
   },
   {
-    name: "base/03_gyool",
+    name: "base/03_yukurosawa",
     radius: 69 / 2,
   },
   {
-    name: "base/04_orange",
+    name: "base/04_dasuzuki",
     radius: 89 / 2,
   },
   {
-    name: "base/05_apple",
+    name: "base/05_hifukunaga",
     radius: 114 / 2,
   },
   {
-    name: "base/06_pear",
+    name: "base/06_gypark",
     radius: 129 / 2,
   },
   {
-    name: "base/07_peach",
+    name: "base/07_shmuronoi",
     radius: 156 / 2,
   },
   {
-    name: "base/08_pineapple",
+    name: "base/08_satamaoki",
     radius: 177 / 2,
   },
   {
-    name: "base/09_melon",
+    name: "base/09_eiyanagi",
     radius: 220 / 2,
   },
   {
-    name: "base/10_watermelon",
+    name: "base/10_RyuCEO_normal",
     radius: 259 / 2,
+  },
+  {
+    name: "base/11_RyuCEO_onimode",
+    radius: 292 / 2,
   },
 ];
 

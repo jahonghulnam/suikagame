@@ -2,18 +2,118 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="halloween/10_watermelon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Suika Game - スイカゲーム</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel='stylesheet'>
 
     <style>
-      body {
-        text-align: center;
+    *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      list-style: none;
+    }
+    html, body {
+      width: 100%;
+      height: 100svh;
+      text-align: center;
+      background-color: black;
+      font-family: "Luckiest Guy", cursive;
+      font-weight: 400;
+      font-style: normal;
+    }
+    .wrap{
+      position: relative;
+      width: 620px;
+      height: 850px;
+      margin: 0 auto;
+      background-image: url(public/images/bg.png);
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    canvas{
+      z-index: 1;
+      position: relative;
+    }
+    .score{
+      position: absolute;
+      margin-left: 42px;
+      text-align: left;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: #6ad4dd;
+      z-index: 2;
+    }
+    .score span{
+      color: #7aa2e3;
+    }
+    #timer{
+      position: absolute;
+      bottom: 0;;
+      z-index: 2;
+      width: 100%;
+      text-align: center;
+      font-size: 1.8rem;
+    }
+    body {
+          margin: 0;
+          padding: 0;
+          background-color: #000000;
+          width: 100%;
+          height: 100%;
+          overflow-x : hidden;
+          overflow-y : hidden;
+      }
+      .stopBGM{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 3;
+        cursor: pointer;
       }
     </style>
   </head>
   <body>
-    <h1>スイカゲーム</h1>
-    <script type="module" src="/main.js"></script>
+    <div class="wrap">
+      <div id="timer">5:00</div>
+      <div class="score">
+        SOCRE: <span id="scoreBox">0</span><br>
+        HISOCRE: <span id="highScoreBox">0</span>
+      </div>
+      <div class="stopBGM"><i class='bx bx-volume-mute' ></i><span>OFF</span></div>
+      <script type="module" src="/gptcode.js"></script>
+    </div>
+    <audio id="button_start_sound">
+      <source src="public/sound/button_strat_sound.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <audio id="mouse_click_sound">
+      <source src="public/sound/mouse_click_sound.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <audio id="fruits_murge_sound">
+      <source src="public/sound/fruits_murge_sound.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <audio id="fruits_last_murge_sound">
+      <source src="public/sound/fruits_last_murge_sound.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <audio id="game_clear">
+      <source src="public/sound/game_clear.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <audio id="game_over">
+      <source src="public/sound/game_over.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <audio id="bgm" loop>
+      <source src="public/sound/bgm.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
   </body>
 </html>
